@@ -11,6 +11,15 @@ dependencies = [
     "numpy",
     "pandas",
     "scikit-learn",
+    "openpyxl",
+    'ipykernel',
+]
+
+[project.optional-dependencies]
+dev = [
+    "pylint",
+    "pytest",
+    "nbdime",
 ]
 
 [tool.setuptools.packages.find]
