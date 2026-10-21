@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
+"""Module providing functions for loading data"""
 import zipfile
 from pathlib import Path
 
-def unzip_raw_data(zip_file_path, destination_path):
+def unzip_raw_data(zip_file_path, destination_path=None):
     """
     Unzip archive. Return paths list of extracted files.
     """
     src = Path(zip_file_path)
-    dst = Path(destination_path)
+    dst = Path(destination_path) if destination_path else src.parent
 
     if not src.exists():
         print(f'Path {src} does not exists!')
@@ -16,8 +17,7 @@ def unzip_raw_data(zip_file_path, destination_path):
         print(f'Path {dst} does not exists!')
         return []
 
-    z = zipfile.ZipFile(src)
-    z.extractall(dst)
-    extracted_files = [dst / Path(f.filename) for f in z.filelist]
-    return extracted_files
-
+    with zipfile.ZipFile(src) as z:
+        z.extractall(dst)
+        extracted_files = [dst / Path(f.filename) for f in z.filelist]
+        return extracted_files
