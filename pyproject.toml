@@ -12,7 +12,8 @@ dependencies = [
     "pandas",
     "scikit-learn",
     "openpyxl",
-    'ipykernel',
+    "ipykernel",
+    "seaborn",
 ]
 
 [project.optional-dependencies]
